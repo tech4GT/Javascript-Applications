@@ -40,8 +40,7 @@ function handler(e) {
 }
 
 function handleClick(e) {
-    const text = e.innerHTML.split("<b>").join("").split("</b>").join("");
-    text_box.value = text;
+    text_box.value = e.innerText;
 }
 
 handler({ target: { value: "" } });
