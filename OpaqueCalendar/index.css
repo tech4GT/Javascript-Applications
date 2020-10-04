@@ -1,0 +1,25 @@
+body {
+  text-align: center;
+  margin: 0px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+h1 {
+  padding-bottom: 50px;
+}
+
+#list {
+  list-style-type: none;
+  width: 50%;
+  text-align: center;
+  margin-left: 25%;
+  padding: 0px;
+}
+
+#list > li {
+  text-align: center;
+  border: 1px solid white;
+  margin: 0px auto 0px;
+  border-radius: 5px;
+}
