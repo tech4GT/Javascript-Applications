@@ -36,13 +36,8 @@ document.addEventListener('keydown', function(e) {
     if (e.key === "a" && tabbable) {
         tab_switcher.hidden = false;
         children[offset].classList.remove("sel");
-        if (!point.next) {
-            point = list.head;
-            offset = 0;
-        } else {
-            point = point.next;
-            offset++;
-        }
+        point = point.next;
+        offset = (offset + 1)%(data.length);
         children[offset].classList.add("sel");
     }
 });
@@ -65,8 +60,12 @@ function setState() {
 
     tab_switcher.innerHTML = "";
 
-    for (let n = list.head; !!n; n = n.next)
-        tab_switcher.innerHTML += `<li class="list-group-item"><img src="${data[n.content.id].url}"><p>${data[n.content.id].title}</p></li>`
+    let temp = list.head;
+
+    do{
+        tab_switcher.innerHTML += `<li class="list-group-item"><img src="${data[temp.content.id].url}"><p>${data[temp.content.id].title}</p></li>`;
+        temp = temp.next;
+    }while(temp !== list.head);
 
     children = tab_switcher.childNodes;
     children[0].classList.add("sel");
