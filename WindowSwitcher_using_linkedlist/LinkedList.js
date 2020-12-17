@@ -1,7 +1,7 @@
 function Linkedlist() {
     function Node(content) {
         this.content = content;
-        this.next = null;
+        this.next = this;
     }
 
     this.head = null;
@@ -15,6 +15,7 @@ function Linkedlist() {
         else {
             this.tail.next = new Node(content);
             this.tail = this.tail.next;
+            this.tail.next = this.head;
         }
     }
 
@@ -24,12 +25,21 @@ function Linkedlist() {
         }
 
         let temp = this.head;
+
         while (temp.next !== node)
             temp = temp.next;
 
-        temp.next = temp.next.next;
-        node.next = this.head;
-        this.head = node;
+        if(node === this.tail){
+            this.head = this.tail;
+            this.tail = temp;
+            this.tail.next = this.head;
+        }
+        else{
+            temp.next = temp.next.next;
+            node.next = this.head;
+            this.head = node;
+            this.tail.next = this.head;
+        }
     }
 
 }
