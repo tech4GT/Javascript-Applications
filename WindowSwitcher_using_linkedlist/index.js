@@ -33,11 +33,15 @@ document.addEventListener('keydown', function(e) {
         tabbable = true;
         point = list.head;
     }
-    if (e.key === "a" && tabbable) {
+    if ((e.key === "f" || e.key === "b") && tabbable) {
         tab_switcher.hidden = false;
+        let key = e.key; // store current pressed key.
+        let dataSize = data.length; // store total size of data array
+
         children[offset].classList.remove("sel");
-        point = point.next;
-        offset = (offset + 1)%(data.length);
+        
+        point = key === "f" ? point.next : point.prev;
+        offset = key === "f" ? ((offset + 1) % dataSize) : offset ? ((offset - 1) % dataSize) : (dataSize - 1);
         children[offset].classList.add("sel");
     }
 });
